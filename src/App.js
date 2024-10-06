@@ -14,7 +14,7 @@ import MovieView from './components/pages/MovieView';
 import MovieList from './components/pages/MovieList';
 import NotFound from './components/pages/NotFound';
 
-axios.defaults.baseURL = 'http://52.15.132.172:8000/';
+axios.defaults.baseURL = 'http://52.15.132.172/';
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 axios.defaults.xsrfCookieName = 'csrftoken'
