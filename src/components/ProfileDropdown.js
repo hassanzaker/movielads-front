@@ -16,19 +16,17 @@ const ProfileDropdown = () => {
     };
 
     const handleLogout = async () => {
-    try {
-        await axios.post('/users/logout/');
-        logout();  // Clear user data from local storage and context
-        Cookies.remove('csrftoken');  // Clear the CSRF token from cookies
-        navigate("/home");
-    } catch (error) {
-        console.error(error);
-        alert("Invalid logout");
-    } finally {
-        logout();
-        Cookies.remove('csrftoken');  // Ensure CSRF token is cleared even if the logout request fails
-    }
-};
+        try {
+            await axios.post('/users/logout/');
+        } catch (error) {
+            console.error("Error during logout:", error);
+        } finally {
+            logout();
+            Cookies.remove('csrftoken');
+            Cookies.remove('sessionid');
+            navigate("/signin");
+        }
+    };
 
     return (
         <Dropdown show={show} onToggle={handleToggle}>
