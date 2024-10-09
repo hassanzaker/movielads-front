@@ -6,6 +6,9 @@ import Home from './Home';  // Import Home component
 import Dashboard from './components/pages/Dashboard';
 import axios from 'axios';
 
+import { ToastContainer } from "react-toastify";
+
+
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { AuthProvider } from './components/AuthContext';
@@ -24,6 +27,7 @@ const App = () => {
         <AuthProvider>
             <Router>
                 <NavigationBar/>
+                <ToastContainer hideProgressBar={true} newestOnTop={true} />
                 <div className="content">
                     <Container>
                         <Routes>
