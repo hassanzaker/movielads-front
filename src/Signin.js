@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useAuth } from './components/AuthContext';  // Import the authentication context
+import Cookies from 'js-cookie';
+
 
 const Signin = () => {
     const [credentials, setCredentials] = useState({
@@ -22,8 +24,15 @@ const Signin = () => {
         try {
             const response = await axios.post('users/signin/', credentials);
             const userData = response.data;
-            login(userData);  
-            navigate('/home');  // Redirect to home page
+            login(userData);
+
+            // Get the new CSRF token from cookies
+            const csrfToken = Cookies.get('csrftoken');
+            if (csrfToken) {
+                axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+            }
+
+            navigate('/home');
         } catch (error) {
             console.error(error);
             alert("Invalid login");

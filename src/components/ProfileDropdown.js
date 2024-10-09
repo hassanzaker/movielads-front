@@ -3,6 +3,7 @@ import { Dropdown, Image } from 'react-bootstrap';
 import { useAuth } from './AuthContext';  // Import the authentication context
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 
 const ProfileDropdown = () => {
@@ -15,17 +16,19 @@ const ProfileDropdown = () => {
     };
 
     const handleLogout = async () => {
-        try {
-            await axios.post('/users/logout/');
-            logout();
-            navigate("/home");
-        } catch (error) {
-            console.error(error);
-            alert("Invalid logout");
-        } finally {
-            logout();
-        }
-    };
+    try {
+        await axios.post('/users/logout/');
+        logout();  // Clear user data from local storage and context
+        Cookies.remove('csrftoken');  // Clear the CSRF token from cookies
+        navigate("/home");
+    } catch (error) {
+        console.error(error);
+        alert("Invalid logout");
+    } finally {
+        logout();
+        Cookies.remove('csrftoken');  // Ensure CSRF token is cleared even if the logout request fails
+    }
+};
 
     return (
         <Dropdown show={show} onToggle={handleToggle}>
