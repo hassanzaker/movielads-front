@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Signup from './Signup';
 import Signin from './Signin';
@@ -14,46 +14,34 @@ import MovieView from './components/pages/MovieView';
 import MovieList from './components/pages/MovieList';
 import NotFound from './components/pages/NotFound';
 
-axios.defaults.baseURL = 'https://52.15.132.172/';
+// Update axios baseURL to use the new domain for the API
+axios.defaults.baseURL = 'https://api.movielads.net/';
 axios.defaults.withCredentials = true;
-axios.defaults.withXSRFToken = true;
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = "X-CSRFToken"
-
-
-
-
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 const App = () => {
-
-
-
-
     return (
-      <AuthProvider>
-        <Router>
-          <NavigationBar/>
-          <div className="content">
-            <Container>
-              <Routes>
-                      <Route path="/signup" element={<Signup />} />
-                      <Route path="/signin" element={<Signin />} />
-                      <Route path="/home" element={<Home />} />  {/* Home route */}
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      <Route path="/movies/:movieId" element={<MovieView />} />
-                      <Route path="/movies" element={<MovieList />} />
-
-
-
-
-                      {/* Catch-all route for undefined URLs */}
-                    <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Container>
-          </div>
-          <Footer />
-        </Router>
-      </AuthProvider>
+        <AuthProvider>
+            <Router>
+                <NavigationBar/>
+                <div className="content">
+                    <Container>
+                        <Routes>
+                            <Route path="/signup" element={<Signup />} />
+                            <Route path="/signin" element={<Signin />} />
+                            <Route path="/home" element={<Home />} />  {/* Home route */}
+                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/movies/:movieId" element={<MovieView />} />
+                            <Route path="/movies" element={<MovieList />} />
+                            {/* Catch-all route for undefined URLs */}
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </Container>
+                </div>
+                <Footer />
+            </Router>
+        </AuthProvider>
     );
 };
 
