@@ -17,7 +17,19 @@ const ProfileDropdown = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('/users/logout/');
+            const csrfToken = Cookies.get('csrftoken');
+            
+            // Ensure the token is available before making the request
+            const response = await axios.post(
+                '/users/logout/', 
+                {}, 
+                {
+                    headers: {
+                        'X-CSRFToken': csrfToken, // Include the CSRF token in the header
+                    },
+                }
+            );
+            console.log("Logout successful:", response);
         } catch (error) {
             console.error("Error during logout:", error);
         } finally {
