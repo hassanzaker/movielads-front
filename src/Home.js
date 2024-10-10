@@ -11,23 +11,23 @@ const Home = () => {
     const navigate = useNavigate();
 
 
-    // useEffect(() => {
-    //     const fetchWelcomeMessage = async () => {
-    //         try {
-    //             const response = await axios.get('users/home/', { withCredentials: true });
-    //             setMessage(response.data.message);
-    //         } catch (error) {
-    //             console.error("Error fetching welcome message", error);
-    //             setMessage("Sign in first!");
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchWelcomeMessage = async () => {
+            try {
+                const response = await axios.get('users/home/', { withCredentials: true });
+                setMessage(response.data.message);
+            } catch (error) {
+                console.error("Error fetching welcome message", error);
+                setMessage("Sign in first!");
+            }
+        };
 
-    //     fetchWelcomeMessage();
+        fetchWelcomeMessage();
 
-    //     if (!user) {
-    //         navigate("/signin");
-    //     }
-    // }, [user, navigate]);
+        // if (!user) {
+        //     navigate("/signin");
+        // }
+    }, [user, navigate]);
 
     return (
         <div>
