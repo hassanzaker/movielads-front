@@ -19,24 +19,23 @@ const Signin = () => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('users/signin/', credentials);
-            const userData = response.data;
-            login(userData);
-
-            // Get the new CSRF token from cookies
-            const csrfToken = Cookies.get('csrftoken');
-            if (csrfToken) {
-                axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-            }
-
+            const { access, refresh, user } = response.data;
+    
+            // Store tokens in localStorage or cookies
+            localStorage.setItem('accessToken', access);
+            localStorage.setItem('refreshToken', refresh);
+            login(user);
             navigate('/home');
         } catch (error) {
             console.error(error);
             alert("Invalid login");
         }
+
     };
 
     useEffect(() => {

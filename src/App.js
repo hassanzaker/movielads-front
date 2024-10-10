@@ -16,8 +16,21 @@ import NotFound from './components/pages/NotFound';
 
 axios.defaults.baseURL = 'https://api.movielads.net/';
 axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true
+
 axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+axios.interceptors.request.use(
+  (config) => {
+      const token = localStorage.getItem('accessToken');
+      if (token) {
+          config.headers['Authorization'] = `Bearer ${token}`;
+      }
+      return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 const App = () => {
     return (

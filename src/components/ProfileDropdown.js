@@ -16,28 +16,10 @@ const ProfileDropdown = () => {
     };
 
     const handleLogout = async () => {
-        try {
-            const csrfToken = Cookies.get('csrftoken');
-            alert(csrfToken);
-            // Ensure the token is available before making the request
-            const response = await axios.post(
-                '/users/logout/', 
-                {}, 
-                {
-                    headers: {
-                        'X-CSRFToken': csrfToken, // Include the CSRF token in the header
-                    },
-                }
-            );
-            console.log("Logout successful:", response);
-        } catch (error) {
-            console.error("Error during logout:", error);
-        } finally {
-            logout();
-            Cookies.remove('csrftoken');
-            Cookies.remove('sessionid');
-            navigate("/signin");
-        }
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        logout();
+        navigate("/signin");
     };
 
     return (
@@ -46,7 +28,7 @@ const ProfileDropdown = () => {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     {/* Show avatar or a placeholder */}
                     <Image 
-                        src={user?.user?.avatar || '/placeholder.png'} 
+                        src={user?.avatar || '/placeholder.png'} 
                         roundedCircle 
                         style={{ width: 40, height: 40, marginRight: '10px' }} 
                     />
@@ -58,10 +40,10 @@ const ProfileDropdown = () => {
                 {user ? (
                     <div>
                 <div className="text-center p-2">
-                    <span>{user?.user?.username || ''}</span>
+                    <span>{user?.username || ''}</span>
                 </div>
                 <div className="text-center p-2">
-                    <span>{user?.user?.email || ''}</span>
+                    <span>{user?.email || ''}</span>
                 </div>
                 </div>
                 ) : (
