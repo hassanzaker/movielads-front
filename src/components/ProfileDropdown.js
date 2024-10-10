@@ -18,7 +18,7 @@ const ProfileDropdown = () => {
     const handleLogout = async () => {
         try {
             const csrfToken = Cookies.get('csrftoken');
-            
+            alert(csrfToken);
             // Ensure the token is available before making the request
             const response = await axios.post(
                 '/users/logout/', 
