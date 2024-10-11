@@ -1,143 +1,132 @@
-MovieLads Frontend
-Welcome to the MovieLads Frontend repository! This is the frontend codebase for the MovieLads application, a movie-centric web platform that allows users to search, rate, and discuss their favorite movies. It also offers movie recommendations, trivia games, and personalized user experiences. The frontend is built with React and deployed on AWS Amplify, connecting to a Django-based backend through Axios for API communication.
+# MovieLads Frontend
 
-Table of Contents
-Overview
-Features
-Tech Stack
-Prerequisites
-Installation
-Configuration
-Running the Project
-Deployment
-Project Structure
-API Integration
-Contributing
-License
-Overview
-The MovieLads frontend is designed to offer a seamless and interactive user experience for movie enthusiasts. It connects with a backend API to provide dynamic data and handles authentication using JWT. The frontend application is hosted on AWS Amplify with continuous deployment from the GitHub repository.
+Welcome to the **MovieLads** frontend repository! This project is a React-based web application that serves as the frontend for the MovieLads platform, allowing users to explore movies, add them to their watchlist, interact with other movie enthusiasts, and more.
 
-Features
-User Authentication: Secure login and signup functionality using JWT.
-Movie Search & Discovery: Find movies using the search bar and add them to a watchlist.
-Personalized Recommendations: Get movie recommendations based on user preferences.
-User Interaction: Comment on movies, chat with friends, and share thoughts.
-Trivia Games: Engage with fun movie trivia games.
-Responsive Design: Optimized for both desktop and mobile users.
-Tech Stack
-Frontend: React, React Router, React-Bootstrap
-State Management: Context API (for user authentication and session management)
-HTTP Client: Axios (for making API requests)
-Styling: CSS, Bootstrap
-Hosting & Deployment: AWS Amplify (with CI/CD)
-Version Control: GitHub
-Prerequisites
-Before you begin, ensure you have met the following requirements:
+## Table of Contents
 
-Node.js and npm: Make sure Node.js (v14 or later) and npm are installed on your machine. Download Node.js.
-Git: You should have Git installed to clone the repository. Download Git.
-Installation
-To set up the project locally, follow these steps:
+- [MovieLads Frontend](#movielads-frontend)
+  - [Features](#features)
+  - [Live Demo](#live-demo)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Running the Application](#running-the-application)
+  - [Configuration](#configuration)
+  - [Project Structure](#project-structure)
+  - [Technologies Used](#technologies-used)
 
-Clone the repository:
 
-bash
-Copy code
-git clone https://github.com/hassanzaker/movielads-front.git
-cd movielads-front
-Install dependencies:
+## Features
 
-bash
-Copy code
-npm install
-Create an environment file: Add an .env file at the root with the following variables:
+- **Search for Movies**: Find movies, get detailed information, and add them to your watchlist.
+- **User Interaction**: Users can leave comments and engage in discussions about their favorite movies.
+- **Personalized Recommendations**: Get suggestions on what to watch based on your interests.
+- **Interactive Games**: Play trivia games related to movies and challenge your knowledge.
+- **Authentication**: JWT-based authentication system to ensure secure access to user accounts.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
 
-javascript
-Copy code
-REACT_APP_API_BASE_URL=<Your Backend API Base URL>
-Configuration
-The frontend interacts with the backend using Axios. Configure the base URL for API requests in the .env file.
+## Live Demo
 
-Backend API: Set the REACT_APP_API_BASE_URL to the URL of your backend server (e.g., https://api.movielads.net).
-Running the Project
-To run the project locally, execute:
+Check out the live version of the application [here](https://movielads.net).
 
-bash
-Copy code
-npm start
-The development server will start, and the app will be available at http://localhost:3000.
+## Getting Started
 
-Scripts
-Start Development Server: npm start
-Build for Production: npm run build
-Lint Code: npm run lint
-Deployment
-This project is deployed using AWS Amplify, which allows for automatic deployments when code is pushed to the GitHub repository.
+Follow these steps to get a local copy of the project up and running on your machine.
 
-Steps to Deploy on AWS Amplify
-Connect the Repository: Go to AWS Amplify in the AWS Console, connect your GitHub repository, and select the appropriate branch.
-Configure Build Settings: Use the default build settings or modify the amplify.yml file if needed.
-Deploy: AWS Amplify will automatically build and deploy your application upon code changes.
-Project Structure
-bash
-Copy code
-movielads-front/
-│
-├── public/               # Static files (index.html, manifest, favicon)
-├── src/
-│   ├── assets/           # Images, fonts, etc.
-│   ├── components/       # Reusable components (buttons, cards, forms)
-│   ├── pages/            # Page components (LandingPage, Movies, Signin, Signup)
-│   ├── App.js            # Main app component
-│   ├── index.js          # Entry point for React
-│   ├── index.css         # Global styles
-│   ├── context/          # Context for authentication and state management
-│   └── utils/            # Utility functions and API service configuration
-└── .env                  # Environment variables (ignored in git)
-API Integration
-Axios Configuration
-Axios is used for making HTTP requests to the backend. The Axios instance is configured with an interceptor to include the JWT token in the Authorization header:
+### Prerequisites
 
-js
-Copy code
-import axios from 'axios';
+- **Node.js** (v14 or higher)
+- **npm** (v6 or higher)
+- A **GitHub** account
+- Basic knowledge of React and JavaScript
 
-const API = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
-});
+### Installation
 
-API.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+1. **Clone the repository**:
 
-export default API;
-Example API Call
-js
-Copy code
-// Fetch movies
-API.get('/movies')
-  .then((response) => {
-    console.log(response.data);
-  })
-  .catch((error) => {
-    console.error('Error fetching movies:', error);
-  });
-Contributing
-Contributions are welcome! Follow these steps to contribute:
+   ```bash
+   git clone https://github.com/hassanzaker/movielads-front.git
+   cd movielads-front
+2. **Install dependencies
 
-Fork the repository.
-Create a new branch (git checkout -b feature/YourFeature).
-Make your changes.
-Commit your changes (git commit -m 'Add some feature').
-Push to the branch (git push origin feature/YourFeature).
-Open a pull request.
-License
-This project is open-source and available under the MIT License.
+   ```bash
+   npm install
 
+### Running the Application
+3. **Start the development server:
+
+   ```bash
+   npm start
+   
+This will run the app in development mode. Open http://localhost:3000 to view it in the browser.
+   
+
+4. **Build for production:
+   ```bash
+   npm run build
+   
+This will create an optimized build of the application in the build folder.
+
+
+
+## Configuration
+
+To configure the frontend application for your environment, follow these steps:
+
+1. **Environment Variables**:
+   - Create a `.env` file in the root of your project.
+
+
+2. **AWS Amplify**:
+   - Set up an AWS Amplify project to host this React app by following these steps:
+     - Go to the AWS Amplify console and click **Get Started** under **Deploy**.
+     - Connect your GitHub repository and select your `movielads-front` repository.
+     - Amplify will automatically detect the framework as React and create build settings.
+     - Review the settings and click **Save and Deploy**.
+     - The app will be deployed on an Amplify-provided domain, which you can later customize using AWS Route 53.
+
+3. **Backend API Configuration**:
+   - Make sure the backend is set up and hosted (on AWS EC2 or other services).
+   - Ensure that CORS is properly configured in the backend to allow requests from your frontend's domain.
+   - Update the `REACT_APP_API_BASE_URL` with the correct backend URL to enable communication between frontend and backend services.
+
+
+
+## Project Structure
+
+
+### Key Files and Directories:
+- **`public/`**: Contains the public assets and the `index.html` file that serves as the entry point for the React app.
+- **`src/`**: Contains all the source code, including components, pages, and styles.
+- **`assets/`**: Holds static assets such as images and icons used throughout the app.
+- **`components/`**: Contains reusable components like the `NavigationBar`, `Footer`, and the `AuthContext` for managing user authentication.
+- **`pages/`**: Holds different page components like `LandingPage`, `Signup`, `Signin`, and `About`, which are mapped to different routes.
+- **`App.js`**: The main component that manages routing between different pages.
+- **`index.js`**: The entry point of the React application.
+- **`index.css`**: Contains global styles applied throughout the app.
+- **`.env`**: Stores environment variables like API URLs.
+- **`package.json`**: Manages project dependencies and scripts for building and running the app.
+- **`README.md`**: Documentation file for the project.
+
+
+
+
+## Technologies Used
+
+This project utilizes a variety of modern web technologies and tools to create a full-featured and responsive web application. Below is a list of the key technologies used:
+
+- **React**: A JavaScript library for building user interfaces, used for creating reusable components and managing the application's state and routing.
+- **React Router**: Handles client-side routing and navigation, enabling a single-page application experience.
+- **Axios**: A promise-based HTTP client for making API requests to the backend server.
+- **React Bootstrap**: Provides responsive design and pre-styled components for building a modern and user-friendly interface.
+- **React DnD**: For implementing drag-and-drop functionality, enhancing user interaction.
+- **Swiper**: A modern touch slider library for implementing the sliding functionality in the landing page.
+- **JavaScript**: The primary programming language used for the frontend logic and user interactions.
+- **HTML5 & CSS3**: For structuring and styling the UI components.
+- **AWS Amplify**: Hosting and managing the frontend application, providing CI/CD pipelines for automatic deployment.
+- **AWS S3**: Storing media files and assets, including user-uploaded images and other static files.
+- **AWS Route 53**: Manages the domain and DNS routing for the application.
+- **JWT Authentication**: Provides a secure and stateless way of handling user authentication.
+- **Git & GitHub**: Version control system and repository for managing the source code and collaborating with others.
+
+These technologies work together to create a scalable and maintainable web application, offering a seamless user experience.
