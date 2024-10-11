@@ -6,8 +6,9 @@ const Footer = () => {
     <footer className="bg-dark text-white mt-4 footer">
       <Container fluid className="py-3">
         <p className="text-center mb-0">
-          © 2024 My Website, Inc.
+          © 2024 MovieLads, Inc.
         </p>
+
       </Container>
     </footer>
   );

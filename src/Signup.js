@@ -16,7 +16,7 @@ const Signup = () => {
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const { user, logout } = useAuth(); // If you use AuthContext for user management
+    const { user } = useAuth(); // Destructure user from AuthContext
 
     const handleChange = (e) => {
         const { name } = e.target;
@@ -74,37 +74,87 @@ const Signup = () => {
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="username">
                             <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter username" name="username" value={formData.username} onChange={handleChange} required />
+                            <Form.Control 
+                                type="text" 
+                                placeholder="Enter username" 
+                                name="username" 
+                                value={formData.username} 
+                                onChange={handleChange} 
+                                autoComplete="username" 
+                                required 
+                            />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="email">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" name="email" value={formData.email} onChange={handleChange} required />
+                            <Form.Control 
+                                type="email" 
+                                placeholder="Enter email" 
+                                name="email" 
+                                value={formData.email} 
+                                onChange={handleChange} 
+                                autoComplete="email" 
+                                required 
+                            />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="birthDate">
                             <Form.Label>Birth Date</Form.Label>
-                            <Form.Control type="date" name="birth_date" value={formData.birth_date} onChange={handleChange} required />
+                            <Form.Control 
+                                type="date" 
+                                name="birth_date" 
+                                value={formData.birth_date} 
+                                onChange={handleChange} 
+                                autoComplete="bday" 
+                                required 
+                            />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="favoriteMovie">
                             <Form.Label>Favorite Movie</Form.Label>
-                            <Form.Control type="text" placeholder="Favorite Movie" name="favorite_movie" value={formData.favorite_movie} onChange={handleChange} />
+                            <Form.Control 
+                                type="text" 
+                                placeholder="Favorite Movie" 
+                                name="favorite_movie" 
+                                value={formData.favorite_movie} 
+                                onChange={handleChange} 
+                                autoComplete="off" 
+                            />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="password1">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" name="password1" value={formData.password1} onChange={handleChange} required />
+                            <Form.Control 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password1" 
+                                value={formData.password1} 
+                                onChange={handleChange} 
+                                autoComplete="new-password" 
+                                required 
+                            />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="password2">
                             <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" placeholder="Confirm Password" name="password2" value={formData.password2} onChange={handleChange} required />
+                            <Form.Control 
+                                type="password" 
+                                placeholder="Confirm Password" 
+                                name="password2" 
+                                value={formData.password2} 
+                                onChange={handleChange} 
+                                autoComplete="new-password" 
+                                required 
+                            />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="avatar">
                             <Form.Label>Avatar</Form.Label>
-                            <Form.Control type="file" name="avatar" onChange={handleChange} />
+                            <Form.Control 
+                                type="file" 
+                                name="avatar" 
+                                onChange={handleChange} 
+                            />
                         </Form.Group>
 
                         <Button variant="primary" type="submit">Sign Up</Button>

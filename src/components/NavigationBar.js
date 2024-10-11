@@ -9,7 +9,7 @@ const NavigationBar = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                     <img
                         src="/MovieLads-logo.png"  
                         width="30"   
@@ -23,6 +23,7 @@ const NavigationBar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/movies">Movies</Nav.Link>
+                        <Nav.Link href="/about">About</Nav.Link>
                     </Nav>
                     <Nav>
                         <ProfileDropdown />

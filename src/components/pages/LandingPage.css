@@ -1,0 +1,22 @@
+.landing-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #f8f9fa;
+}
+
+.icon-style {
+    margin-right: 10px;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+.landing-page .btn {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.landing-page .btn:hover {
+    background-color: #007bff;
+    color: white;
+}
