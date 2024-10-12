@@ -14,13 +14,16 @@ import MovieView from './components/pages/MovieView';
 import MovieList from './components/pages/MovieList';
 import NotFound from './components/pages/NotFound';
 import About from './components/pages/About';
+import Watchlist from './components/pages/Watchlist';
+import Seenlist from './components/pages/Seenlist';
+
 import LandingPage from './components/pages/LandingPage';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/';
-axios.defaults.baseURL = 'https://api.movielads.net/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+// axios.defaults.baseURL = 'https://api.movielads.net/';
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true
@@ -73,7 +76,8 @@ const App = () => {
                                 <Route path="/movies/:movieId" element={<MovieView />} />
                                 <Route path="/movies" element={<MovieList />} />
                                 <Route path="/about" element={<About />} />
-
+                                <Route path="/watchlist" element={<Watchlist />} />
+                                <Route path="/seenlist" element={<Seenlist />} />
                                 {/* Catch-all route for undefined URLs */}
                                 <Route path="*" element={<NotFound />} />
                             </Routes>
