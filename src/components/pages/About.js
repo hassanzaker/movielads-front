@@ -112,7 +112,7 @@ const About = () => {
                                     </Card.Text>
                                     <Button 
                                         variant="primary" 
-                                        href="https://movie-lads-statics.s3.us-east-2.amazonaws.com/resume/Hunter_s_Resume-.pdf" 
+                                        href="https://movie-lads-statics.s3.us-east-2.amazonaws.com/resume/Hunter_resume-2.pdf" 
                                         target="_blank" 
                                         rel="noopener noreferrer"
                                     >
