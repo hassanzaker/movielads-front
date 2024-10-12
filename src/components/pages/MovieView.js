@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Card, Container, Row, Col, ListGroup, ListGroupItem, Button, Badge } from 'react-bootstrap';
+import { Card, Container, Row, Col, ListGroup, ListGroupItem, Button, Badge, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
 import CircularProgressBar from '../CircularProgressBar';
 import { addToWatchList } from '../../utils/watchlistUtils';
@@ -14,6 +14,14 @@ const MovieView = () => {
     const [isInWatchlist, setIsInWatchlist] = useState(false);
     const [isSeen, setIsSeen] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [showWatchlistModal, setShowWatchlistModal] = useState(false); // Watchlist modal visibility
+    const [showSeenModal, setShowSeenModal] = useState(false); // Seen list modal visibility
+
+    // Form states for watchlist and seen list
+    const [watchlistPriority, setWatchlistPriority] = useState(2); // Default priority
+    const [watchlistNotes, setWatchlistNotes] = useState('');
+    const [seenRating, setSeenRating] = useState(8); // Default rating
+    const [seenReview, setSeenReview] = useState('');
 
     useEffect(() => {
         const fetchMovie = async () => {
@@ -22,10 +30,9 @@ const MovieView = () => {
                 setMovie(result.data.movie);
                 setIsInWatchlist(result.data.watchlist);
                 setIsSeen(result.data.seen);
-
             } catch (error) {
                 const errorMessage = error.response.data.message || error.response.data.error || "An error occurred";
-                console.error('Error adding movie to seenlist: ', errorMessage);
+                console.error('Error fetching movie data:', errorMessage);
             } finally {
                 setLoading(false);
             }
@@ -34,18 +41,29 @@ const MovieView = () => {
         fetchMovie();
     }, [params]);
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    
 
-    const handleAddToWatchList = async () => {
+    // Handle form submissions
+    const handleWatchlistSubmit = async () => {
         try {
-            await addToWatchList(movie.id, 3, "Let's see!");
+            await addToWatchList(movie.id, watchlistPriority, watchlistNotes);
             setIsInWatchlist(true);
+            setShowWatchlistModal(false);  // Close modal on success
         } catch (error) {
             console.error("Error adding to watchlist", error);
         }
     };
+
+    const handleSeenSubmit = async () => {
+        try {
+            await addToSeenList(movie.id, seenRating, seenReview);
+            setIsSeen(true);
+            setShowSeenModal(false);  // Close modal on success
+        } catch (error) {
+            console.error("Error adding to seen list", error);
+        }
+    };
+
 
     const handleAddToSeenList = async () => {
         try {
@@ -55,6 +73,17 @@ const MovieView = () => {
             console.error("Error adding to watchlist", error);
         }
     };
+    
+
+    if (loading) {
+        return (
+            <div className="text-center">
+                <span className="spinner-border text-primary" role="status" aria-hidden="true"></span>
+                <p>Loading movie details...</p>
+            </div>
+        );
+    }
+    
 
     return (
         <Container className="mt-5">
@@ -110,7 +139,7 @@ const MovieView = () => {
                         </ListGroup>
                     </Card>
                     <Button
-                        onClick={handleAddToWatchList}
+                        onClick={() => setShowWatchlistModal(true)}
                         variant={isInWatchlist ? "success" : "primary"}
                         disabled={isInWatchlist}
                         className="mt-3"
@@ -128,7 +157,7 @@ const MovieView = () => {
                         )}
                     </Button>
                     <Button
-                        onClick={handleAddToSeenList}
+                        onClick={() => setShowSeenModal(true)}
                         variant={isSeen ? "success" : "primary"}
                         disabled={isSeen}
                         className="mt-3"
@@ -147,7 +176,59 @@ const MovieView = () => {
                     </Button>
                 </Col>
             </Row>
+
+            <Modal show={showWatchlistModal} onHide={() => setShowWatchlistModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add to Watchlist</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Priority</Form.Label>
+                            <Form.Select value={watchlistPriority} onChange={(e) => setWatchlistPriority(e.target.value)}>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Notes</Form.Label>
+                            <Form.Control as="textarea" rows={3} value={watchlistNotes} onChange={(e) => setWatchlistNotes(e.target.value)} />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowWatchlistModal(false)}>Close</Button>
+                    <Button variant="primary" onClick={handleWatchlistSubmit}>Add to Watchlist</Button>
+                </Modal.Footer>
+            </Modal>
+
+
+            <Modal show={showSeenModal} onHide={() => setShowSeenModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add to Seenlist</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Rating</Form.Label>
+                            <Form.Control type="number" min="1" max="10" value={seenRating} onChange={(e) => setSeenRating(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Review</Form.Label>
+                            <Form.Control as="textarea" rows={3} value={seenReview} onChange={(e) => setSeenReview(e.target.value)} />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowSeenModal(false)}>Close</Button>
+                    <Button variant="primary" onClick={handleSeenSubmit}>Add to Seenlist</Button>
+                </Modal.Footer>
+            </Modal>
+
+
         </Container>
+        
     );
 };
 

@@ -3,6 +3,7 @@ import { Table } from 'react-bootstrap';
 import { FaSortUp, FaSortDown } from 'react-icons/fa';
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
 import { FaFilm, FaStickyNote, FaStar, FaFlag, FaCalendarAlt, FaComments } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const possibleColumnName = ['movie_id', 'movie_title', 'notes', 'rating', 'priority', 'added_at', 'review'];
 
@@ -45,6 +46,7 @@ const getColumnIcon = (key) => {
 
 const DynamicSortableList = ({ data }) => {
     const [sortConfig, setSortConfig] = useState({ key: 'movie_title', direction: 'ascending' });
+    const navigate = useNavigate(); // Initialize navigate function
 
     const sortedData = [...data].sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -71,6 +73,10 @@ const DynamicSortableList = ({ data }) => {
         return null;
     };
 
+    const handleMovieClick = (movieId) => {
+        navigate(`/movies/${movieId}`);
+    };
+
     return (
         <div>
             <Table striped bordered hover responsive className="text-center">
@@ -88,7 +94,18 @@ const DynamicSortableList = ({ data }) => {
                         <tr key={index}>
                             {Object.entries(item).map(([key, value], idx) => (
                                 <td key={idx}>
-                                    {key === 'added_at' ? getTimeDifference(value) : value}
+                                    {key === 'movie_id' || key === 'movie_title' ? (
+                                        <span
+                                            style={{ color: '#007bff', cursor: 'pointer', textDecoration: 'underline' }}
+                                            onClick={() => handleMovieClick(item.movie_id)} // Make it clickable
+                                        >
+                                            {value}
+                                        </span>
+                                    ) : key === 'added_at' ? (
+                                        getTimeDifference(value)
+                                    ) : (
+                                        value
+                                    )}
                                 </td>
                             ))}
                         </tr>
