@@ -19,7 +19,9 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+// axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+axios.defaults.baseURL = 'https://api.movielads.net/';
+
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true
 
