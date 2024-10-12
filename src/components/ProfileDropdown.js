@@ -54,8 +54,8 @@ const ProfileDropdown = () => {
                     <>
                         <Dropdown.Item href="/profile" className="text-white bg-dark">Profile</Dropdown.Item>
                         <Dropdown.Item href="/dashboard" className="text-white bg-dark">Dashboard</Dropdown.Item>
-                        <Dropdown.Item href="/change-password" className="text-white bg-dark">Change Password</Dropdown.Item>
-                        <Dropdown.Item href="/preferences" className="text-white bg-dark">Preferences</Dropdown.Item>
+                        <Dropdown.Item href="/watchlist" className="text-white bg-dark">Watchlist</Dropdown.Item>
+                        <Dropdown.Item href="/seenlist" className="text-white bg-dark">Seen Movies</Dropdown.Item>
                         <Dropdown.Item onClick={handleLogout} className="text-white bg-dark">Log out</Dropdown.Item>
                     </>
                 ) : (
