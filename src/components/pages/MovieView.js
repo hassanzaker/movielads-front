@@ -4,12 +4,15 @@ import { Card, Container, Row, Col, ListGroup, ListGroupItem, Button, Badge } fr
 import axios from 'axios';
 import CircularProgressBar from '../CircularProgressBar';
 import { addToWatchList } from '../../utils/watchlistUtils';
+import { addToSeenList } from '../../utils/seenListUtils';
+
 import { FaCalendarAlt, FaClock, FaFilm, FaMoneyBill, FaChartLine, FaCheck, FaPlus } from 'react-icons/fa';
 
 const MovieView = () => {
     const params = useParams();
     const [movie, setMovie] = useState(null);
     const [isInWatchlist, setIsInWatchlist] = useState(false);
+    const [isSeen, setIsSeen] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -17,13 +20,12 @@ const MovieView = () => {
             try {
                 const result = await axios.get(`movie/${params.movieId}`);
                 setMovie(result.data.movie);
+                setIsInWatchlist(result.data.watchlist);
+                setIsSeen(result.data.seen);
 
-                const watchlistResponse = await axios.get(`watchlist/isin/${params.movieId}/`);
-                if (watchlistResponse.status === 200) {
-                    setIsInWatchlist(true);
-                }
             } catch (error) {
-                console.error("Error fetching movie or watchlist status", error);
+                const errorMessage = error.response.data.message || error.response.data.error || "An error occurred";
+                console.error('Error adding movie to seenlist: ', errorMessage);
             } finally {
                 setLoading(false);
             }
@@ -40,6 +42,15 @@ const MovieView = () => {
         try {
             await addToWatchList(movie.id, 3, "Let's see!");
             setIsInWatchlist(true);
+        } catch (error) {
+            console.error("Error adding to watchlist", error);
+        }
+    };
+
+    const handleAddToSeenList = async () => {
+        try {
+            await addToSeenList(movie.id, 8, "Awesome!");
+            setIsSeen(true);
         } catch (error) {
             console.error("Error adding to watchlist", error);
         }
@@ -113,6 +124,24 @@ const MovieView = () => {
                         ) : (
                             <>
                                 <FaPlus className="me-2" /> Add to Watchlist
+                            </>
+                        )}
+                    </Button>
+                    <Button
+                        onClick={handleAddToSeenList}
+                        variant={isSeen ? "success" : "primary"}
+                        disabled={isSeen}
+                        className="mt-3"
+                        size="lg"
+                        style={{ width: '100%' }}
+                    >
+                        {isSeen ? (
+                            <>
+                                <FaCheck className="me-2" /> Already Seen
+                            </>
+                        ) : (
+                            <>
+                                <FaPlus className="me-2" /> Seen it? Share your thoughts
                             </>
                         )}
                     </Button>
