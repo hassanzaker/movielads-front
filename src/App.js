@@ -16,7 +16,7 @@ import NotFound from './components/pages/NotFound';
 import About from './components/pages/About';
 import Watchlist from './components/pages/Watchlist';
 import Seenlist from './components/pages/Seenlist';
-
+import Profile from './components/pages/Profile';
 import LandingPage from './components/pages/LandingPage';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -78,6 +78,7 @@ const App = () => {
                                 <Route path="/about" element={<About />} />
                                 <Route path="/watchlist" element={<Watchlist />} />
                                 <Route path="/seenlist" element={<Seenlist />} />
+                                <Route path="/profile" element={<Profile />} />
                                 {/* Catch-all route for undefined URLs */}
                                 <Route path="*" element={<NotFound />} />
                             </Routes>
