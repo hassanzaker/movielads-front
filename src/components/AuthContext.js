@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
     });
 
     const login = (userData) => {
-        alert(Object.keys(userData));
         setUser(userData);
         localStorage.setItem('userData', JSON.stringify(userData));  // Store user data securely
     };
