@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+
+@media (max-width: 576px) {
+  .search-bar {
+    width: 100%; /* Make the search bar take full width on mobile */
+  }
+
+  .profile-dropdown {
+    margin-top: 10px; /* Add some space between the search bar and profile on mobile */
+  }
+}
+

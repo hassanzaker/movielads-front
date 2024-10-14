@@ -71,7 +71,7 @@ const MovieSearch = () => {
                         placeholder="Search for a movie..."
                         value={query}
                         onChange={handleInputChange}
-                        style={{ width: '500px' }}  // Set width to 400px or desired size
+                        style={{ width: '400px' }}  // Set width to 400px or desired size
                     />
                 </Form.Group>
             </Form>
