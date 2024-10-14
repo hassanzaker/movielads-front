@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Signup from './Signup';
 import Signin from './Signin';
 import Home from './Home';  // Import Home component
@@ -9,6 +9,7 @@ import axios from 'axios';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { AuthProvider } from './components/AuthContext';
+
 import { Container } from 'react-bootstrap';
 import MovieView from './components/pages/MovieView';
 import MovieList from './components/pages/MovieList';
@@ -20,7 +21,7 @@ import Profile from './components/pages/Profile';
 import LandingPage from './components/pages/LandingPage';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
+import { useAuth } from './components/AuthContext'; 
 
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 axios.defaults.baseURL = 'https://api.movielads.net/';
@@ -42,6 +43,11 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useAuth();  
+  return user ? children : <Navigate to="/signin" />;
+};
 
 
 const App = () => {
@@ -71,14 +77,14 @@ const App = () => {
                                 <Route path="/" element={<LandingPage />} />
                                 <Route path="/signup" element={<Signup />} />
                                 <Route path="/signin" element={<Signin />} />
-                                <Route path="/home" element={<Home />} />  {/* Home route */}
-                                <Route path="/dashboard" element={<Dashboard />} />
+                                <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />  {/* Home route */}
+                                <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                                 <Route path="/movies/:movieId" element={<MovieView />} />
                                 <Route path="/movies" element={<MovieList />} />
                                 <Route path="/about" element={<About />} />
-                                <Route path="/watchlist" element={<Watchlist />} />
-                                <Route path="/seenlist" element={<Seenlist />} />
-                                <Route path="/profile" element={<Profile />} />
+                                <Route path="/watchlist" element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
+                                <Route path="/seenlist" element={<ProtectedRoute><Seenlist /></ProtectedRoute>} />
+                                <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                                 {/* Catch-all route for undefined URLs */}
                                 <Route path="*" element={<NotFound />} />
                             </Routes>
