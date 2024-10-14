@@ -1,0 +1,71 @@
+/* Search result item styling */
+.search-result-item {
+    width: 100%; /* Make the card take the full width of the search bar */
+    max-width: 400px; /* Adjust to ensure consistency */
+    padding: 10px;
+    background-color: #ffffff; 
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    display: block;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+/* Movie title and release date */
+.movie-title {
+    font-size: 16px; 
+    font-weight: bold;
+    color: #007bff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Movie overview styling */
+.movie-overview {
+    font-size: 14px;
+    margin: 0;
+    color: #333;
+    line-height: 1.4;
+    max-height: 4.2em; /* Limit to 3 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Badge for movie rating */
+.movie-rating-badge {
+    font-size: 14px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 5px;
+}
+
+/* Flex container for the title and rating */
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.search-results {
+    z-index: 1000; /* Ensure the search results appear below the navbar */
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%; 
+    max-width: 400px; /* Ensure it matches the text field width */
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: white; /* Add background color if missing */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}

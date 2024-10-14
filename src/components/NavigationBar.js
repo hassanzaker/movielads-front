@@ -2,6 +2,8 @@ import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useAuth } from './AuthContext';
 import ProfileDropdown from './ProfileDropdown';
+import MovieSearch from './MovieSearch';
+
 
 const NavigationBar = () => {
     const { user } = useAuth();
@@ -24,6 +26,9 @@ const NavigationBar = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/movies">Movies</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <MovieSearch />
                     </Nav>
                     <Nav>
                         <ProfileDropdown />
