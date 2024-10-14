@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Col, Row, Dropdown, DropdownButton, Card, Button } from 'react-bootstrap';
+import { Container, Col, Row, Dropdown, DropdownButton, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MovieGrid from './MovieGrid';
 import { FaStar, FaFire, FaFilm, FaCalendarAlt } from 'react-icons/fa';
@@ -10,12 +10,15 @@ const MovieList = () => {
     const [dropdownTitle, setDropdownTitle] = useState('Top Rated');
     const [listType, setListType] = useState("top_rated");
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);  // Current page state
+    const [totalPages, setTotalPages] = useState(1);    // Total pages from API
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await axios.get(`movies/all?list_type=${listType}`);
+                const response = await axios.get(`/movies/all?list_type=${listType}&page=${currentPage}`);
                 setMovies(response.data.results);
+                setTotalPages(response.data.total_pages);  // Set total pages
             } catch (error) {
                 console.error('Error fetching movies:', error);
             } finally {
@@ -24,11 +27,12 @@ const MovieList = () => {
         };
 
         fetchMovies();
-    }, [listType]);
+    }, [listType, currentPage]);  // Trigger fetch when page or list type changes
 
     const handleDropdownChoice = (actionName) => {
         setDropdownTitle(actionName);
         setLoading(true);
+        setCurrentPage(1);  // Reset to page 1 when changing the list type
         switch (actionName) {
             case "Top Rated":
                 setListType("top_rated");
@@ -46,6 +50,33 @@ const MovieList = () => {
                 alert("Unknown selection!");
                 break;
         }
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handlePageClick = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // Generate page numbers around the current page (5 before and 5 after)
+    const getPageNumbers = () => {
+        const pageNumbers = [];
+        const startPage = Math.max(1, currentPage - 5); // Ensures no pages below 1
+        const endPage = Math.min(totalPages, currentPage + 5); // Ensures no pages above total pages
+        for (let i = startPage; i <= endPage; i++) {
+            pageNumbers.push(i);
+        }
+        return pageNumbers;
     };
 
     return (
@@ -84,6 +115,33 @@ const MovieList = () => {
                 ) : (
                     <MovieGrid movies={movies} />
                 )}
+            </div>
+            
+            {/* Pagination Controls */}
+            <div className="d-flex justify-content-center mt-3">
+                <Button variant="secondary" className="fixed" onClick={handlePreviousPage} disabled={currentPage === 1}>
+                    {"<<"}
+                </Button>
+
+                {/* Show 5 pages before and after current */}
+                {getPageNumbers().map(pageNumber => (
+                    <Button
+                        key={pageNumber}
+                        variant={pageNumber === currentPage ? 'secondary' : 'outline-secondary'}
+                        onClick={() => handlePageClick(pageNumber)}
+                        className="mx-1"
+                    >
+                        {pageNumber}
+                    </Button>
+                ))}
+
+                <Button variant="secondary" onClick={handleNextPage} disabled={currentPage === totalPages}>
+                    {">>"}
+                </Button>
+            </div>
+
+            <div className="d-flex justify-content-center mt-3">
+                <span>Page {currentPage} of {totalPages}</span>
             </div>
         </Container>
     );
