@@ -28,7 +28,6 @@ const Seenlist = () => {
 
 
     const handleDeleteMovies = async (selectedMovieIds) => {
-        alert("HI");
         try {
             await axios.delete('seen/delete/', {
                 data: { movie_ids: selectedMovieIds }
