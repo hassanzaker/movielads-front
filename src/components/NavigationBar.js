@@ -4,7 +4,6 @@ import { useAuth } from './AuthContext';
 import ProfileDropdown from './ProfileDropdown';
 import MovieSearch from './MovieSearch';
 
-
 const NavigationBar = () => {
     const { user } = useAuth();
 
@@ -27,10 +26,10 @@ const NavigationBar = () => {
                         <Nav.Link href="/movies">Movies</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
                     </Nav>
-                    <Nav>
+                    <Nav className="me-auto">
                         <MovieSearch />
                     </Nav>
-                    <Nav>
+                    <Nav className="ms-3"> {/* Added margin start to create space */}
                         <ProfileDropdown />
                     </Nav>
                 </Navbar.Collapse>

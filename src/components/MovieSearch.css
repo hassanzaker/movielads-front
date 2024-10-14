@@ -1,7 +1,13 @@
+/* Container for the search input and results */
+.search-container {
+    position: relative; /* Set the container as relative to position the results correctly */
+    width: 100%; /* Ensure it takes the full width of the container */
+    max-width: 400px; /* Ensure it matches the text field width */
+}
+
 /* Search result item styling */
 .search-result-item {
     width: 100%; /* Make the card take the full width of the search bar */
-    max-width: 400px; /* Adjust to ensure consistency */
     padding: 10px;
     background-color: #ffffff; 
     margin: 0 auto;
@@ -12,15 +18,42 @@
     transition: transform 0.3s ease;
 }
 
-/* Movie title and release date */
 .movie-title {
     font-size: 16px; 
     font-weight: bold;
     color: #007bff;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
+
+/* Badge for movie rating */
+.movie-rating-badge {
+    font-size: 14px;
+    padding: 5px 10px;
+    display: inline-flex; /* Ensures it stays inline with other elements */
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 5px;
+    margin-left: 10px; /* Add some space between the title and badge */
+    flex-shrink: 0; /* Prevent badge from shrinking */
+}
+
+/* Flex container for the title and rating */
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.d-flex .movie-title {
+    flex-grow: 1; /* Allows the title to grow and take available space */
+    min-width: 0; /* Ensure flexbox handles shrinking correctly */
+}
+
 
 /* Movie overview styling */
 .movie-overview {
@@ -36,35 +69,17 @@
     -webkit-box-orient: vertical;
 }
 
-/* Badge for movie rating */
-.movie-rating-badge {
-    font-size: 14px;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    border-radius: 5px;
-}
 
-/* Flex container for the title and rating */
-.d-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
+/* Search results styling */
 .search-results {
     z-index: 1000; /* Ensure the search results appear below the navbar */
-    position: absolute;
-    top: 100%; 
+    position: absolute; /* Position the results absolutely */
+    top: 100%; /* Place it right below the text field */
     left: 0;
     width: 100%; 
-    max-width: 400px; /* Ensure it matches the text field width */
     max-height: 400px;
     overflow-y: auto;
-    background-color: white; /* Add background color if missing */
+    background-color: white;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;

@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import { Container, Form, ListGroup, Button, Badge } from 'react-bootstrap';
 import { FaCalendarAlt, FaInfoCircle, FaStar, FaFilm } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MovieSearch.css';  // Import custom CSS file
 
+
 const MovieSearch = () => {
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [showResults, setShowResults] = useState(false);
+    const navigate = useNavigate();
+
+
+    const handleMovieClick = (movieId) => {
+        navigate(`/movies/${movieId}`);
+        setQuery('');
+    };
+
 
     useEffect(() => {
         if (query.length > 2) {
+            setShowResults(true);
             setLoading(true);
             const fetchSearchResults = async () => {
                 try {
@@ -27,6 +40,7 @@ const MovieSearch = () => {
             fetchSearchResults();
         } else {
             setSearchResults([]);
+            setShowResults(false);
         }
     }, [query]);
 
@@ -57,7 +71,7 @@ const MovieSearch = () => {
                         placeholder="Search for a movie..."
                         value={query}
                         onChange={handleInputChange}
-                        style={{ width: '400px' }}  // Set width to 400px or desired size
+                        style={{ width: '500px' }}  // Set width to 400px or desired size
                     />
                 </Form.Group>
             </Form>
@@ -65,16 +79,15 @@ const MovieSearch = () => {
             {loading ? (
                 <div className="text-center mt-3">Loading...</div>
             ) : (
+                showResults ? (
                 <ListGroup className="mt-3 search-results">
                     {searchResults.map((movie) => (
-                        <ListGroup.Item key={movie.id} className="search-result-item">
+                        <ListGroup.Item key={movie.id} className="search-result-item" onClick={() => handleMovieClick(movie.id)}>
                             <div className="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h5 className="movie-title mb-1">
-                                        <FaFilm className="me-2 text-primary" />
-                                        <span dangerouslySetInnerHTML={{ __html: highlightQuery(movie.original_title) }} />
-                                        <small className="text-muted"> {formatReleaseDate(movie.release_date)} </small>
-                                    </h5>
+                                <div className="movie-title">
+                                    <FaFilm className="me-2 text-primary" />
+                                    <span dangerouslySetInnerHTML={{ __html: highlightQuery(movie.original_title) }} />
+                                    <small className="text-muted"> {formatReleaseDate(movie.release_date)} </small>
                                 </div>
                                 <Badge bg="warning" text="dark" className="movie-rating-badge">
                                     <FaStar /> {movie.vote_average.toFixed(1)}
@@ -84,6 +97,10 @@ const MovieSearch = () => {
                         </ListGroup.Item>
                     ))}
                 </ListGroup>
+                ) : (
+                    <></>
+                )
+
 
             )}
         </Container>
