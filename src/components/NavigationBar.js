@@ -9,7 +9,7 @@ const NavigationBar = () => {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
+            <Container fluid>
                 <Navbar.Brand href="/">
                     <img
                         src="/MovieLads-logo.png"  
@@ -26,11 +26,15 @@ const NavigationBar = () => {
                         <Nav.Link href="/movies">Movies</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
                     </Nav>
-                    <Nav className="me-auto">
-                        <MovieSearch />
-                    </Nav>
-                    <Nav className="ms-3"> {/* Added margin start to create space */}
-                        <ProfileDropdown />
+                    <Nav className="d-flex align-items-center w-100 flex-column flex-lg-row"> 
+                        <div className="w-100 mb-2 mb-lg-0"> 
+                            {/* Ensure the search bar takes full width on mobile */}
+                            <MovieSearch />
+                        </div>
+                        <div className="ms-lg-3"> 
+                            {/* Margin applied on larger screens only */}
+                            <ProfileDropdown />
+                        </div>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
