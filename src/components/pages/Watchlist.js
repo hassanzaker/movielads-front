@@ -73,6 +73,7 @@ const Watchlist = () => {
                         data={watchlistData}
                         handleDeleteMovie={handleDeleteMovies}
                         handleAddToSeenList={handleAddToSeenList}
+                        isWatchlist={true}
                     />
                 </Col>
             </Row>

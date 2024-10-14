@@ -44,7 +44,7 @@ const getColumnIcon = (key) => {
     }
 };
 
-const DynamicSortableList = ({ data, handleDeleteMovie, handleAddToSeenList }) => {
+const DynamicSortableList = ({ data, handleDeleteMovie, handleAddToSeenList, isWatchlist }) => {
     const [sortConfig, setSortConfig] = useState({ key: 'movie_title', direction: 'ascending' });
     const [selectedMovies, setSelectedMovies] = useState([]);
     const [allSelected, setAllSelected] = useState(false);
@@ -219,9 +219,11 @@ const DynamicSortableList = ({ data, handleDeleteMovie, handleAddToSeenList }) =
                                     <FaTrash /> Delete
                                 </Button>
                                 {/* Add to Seen List button */}
+                                {(isWatchlist ?
                                 <Button variant="success" onClick={() => handleSeenModalOpen(item)} className="ms-2">
                                     <FaEye /> Add to Seen List
-                                </Button>
+                                </Button> :
+                                <></>)}
                             </td>
                         </tr>
                     ))}
