@@ -15,13 +15,20 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('userData', JSON.stringify(userData));  // Store user data securely
     };
 
+    const update = (userData) => {
+        if ( localStorage.getItem('userData'))
+            localStorage.removeItem('userData');
+        localStorage.setItem('userData', JSON.stringify(userData));
+        setUser(userData);
+    };
+
     const logout = () => {
         setUser(null);
         localStorage.removeItem('userData');  // Clear user data from local storage
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, update }}>
             {children}
         </AuthContext.Provider>
     );

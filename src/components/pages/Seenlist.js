@@ -26,6 +26,22 @@ const Seenlist = () => {
         fetchSeenlist();  // Trigger the fetch when the component loads
     }, []);
 
+
+    const handleDeleteMovies = async (selectedMovieIds) => {
+        alert("HI");
+        try {
+            await axios.delete('seen/delete/', {
+                data: { movie_ids: selectedMovieIds }
+            });
+
+            // Update the local state to remove the deleted movies from the list
+            setSeenlistData((prev) => prev.filter((movie) => !selectedMovieIds.includes(movie.movie_id)));
+        } catch (error) {
+            console.error('Error deleting movies from watchlist:', error);
+        }
+    };
+
+
     if (loading) {
         return <div className="text-center"><MdOutlineMovie size={50} /><h4>Loading your seenlist...</h4></div>;
     }
@@ -43,7 +59,12 @@ const Seenlist = () => {
             <Row>
                 <Col className="text-center">
                     <h2><MdOutlineMovie size={30} /> Seen Movies</h2>
-                    <DynamicSortableList data={seenlistData} />
+                    <DynamicSortableList
+                        data={seenlistData}
+                        handleDeleteMovie={handleDeleteMovies}
+                        handleAddToSeenList={null}
+                        isWathclist={false}
+                    />
                 </Col>
             </Row>
         </Container>
