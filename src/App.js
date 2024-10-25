@@ -25,8 +25,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useAuth } from './components/AuthContext'; 
 import { useTheme, ThemeProvider } from './components/ThemeContext';
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/';
-// axios.defaults.baseURL = 'https://api.movielads.net/';
+// axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+axios.defaults.baseURL = 'https://api.movielads.net/';
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true
@@ -34,15 +34,65 @@ axios.defaults.withXSRFToken = true
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
+const refreshToken = async () => {
+  const refreshToken = localStorage.getItem('refreshToken');
+  if (!refreshToken) {
+    return null;
+  }
+
+  try {
+    const response = await axios.post('users/refresh/', {
+      refresh: refreshToken,
+    });
+    const { access } = response.data;
+    localStorage.setItem('accessToken', access);  // Update new access token
+    return access;
+  } catch (error) {
+    console.error("Failed to refresh token", error);
+    return null;
+  }
+};
+
+// Axios request interceptor to add the Authorization header
 axios.interceptors.request.use(
-  (config) => {
-      const token = localStorage.getItem('accessToken');
-      if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
-      }
-      return config;
+  async (config) => {
+    let token = localStorage.getItem('accessToken');
+    
+    // Check if the token has expired (this is a simplified check)
+    const tokenExpired = false;  // Add your logic for checking token expiration
+
+    // Refresh the token if it's expired
+    if (tokenExpired) {
+      token = await refreshToken();
+    }
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return config;
   },
   (error) => Promise.reject(error)
+);
+
+// Axios response interceptor to handle 401 errors (Unauthorized)
+axios.interceptors.response.use(
+  (response) => response,  // Pass through valid responses
+  async (error) => {
+    const originalRequest = error.config;
+    
+    // If we get a 401 error (token expired), try refreshing the token
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const newAccessToken = await refreshToken();
+      if (newAccessToken) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
+        return axios(originalRequest);  // Retry the original request with the new token
+      }
+    }
+
+    return Promise.reject(error);  // Reject all other errors
+  }
 );
 
 
