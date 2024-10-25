@@ -1,0 +1,34 @@
+body.theme-ocean .navbar {
+    background-color: #457b9d;  /* Dark background */
+    color: #f1faee;  /* Light text */
+  }
+  
+  body.theme-ocean .navbar .nav-link {
+    color: #f1faee;
+  }
+  
+  body.theme-ocean .footer {
+    background-color: #457b9d;
+    color: #f1faee;
+  }
+  
+  body.theme-ocean .dropdown-menu {
+    background-color: #457b9d;
+    color: #f1faee;
+  }
+  
+  body.theme-ocean .dropdown-item {
+    background-color: #457b9d;
+    color: #f1faee;
+  }
+  
+  
+  body.theme-ocean .navbar-brand {
+    background-color: #457b9d;
+    color: #f1faee;
+  }
+  
+  body.theme-ocean .dropdown-item:hover {
+    background-color: #f1faee;
+    color: #457b9d;
+    }

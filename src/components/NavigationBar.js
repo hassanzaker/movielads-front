@@ -8,9 +8,9 @@ const NavigationBar = () => {
     const { user } = useAuth();
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" className="navbar">
             <Container fluid>
-                <Navbar.Brand href="/">
+                <Navbar.Brand href="/" className="navbar-brand">
                     <img
                         src="/MovieLads-logo.png"  
                         width="30"   
@@ -24,6 +24,7 @@ const NavigationBar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/movies">Movies</Nav.Link>
+                        <Nav.Link href="/settings">Setting</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
                     </Nav>
                     <Nav className="d-flex align-items-center w-100 flex-column flex-lg-row"> 

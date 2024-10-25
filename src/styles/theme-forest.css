@@ -1,0 +1,34 @@
+body.theme-forest .navbar {
+  background-color: #3ecd36;  /* Dark background */
+  color: #652d0a;  /* Light text */
+}
+
+body.theme-forest .navbar .nav-link {
+  color: #652d0a;
+}
+
+body.theme-forest .footer {
+  background-color: #3ecd36;
+  color: #652d0a;
+}
+
+body.theme-forest .dropdown-menu {
+  background-color: #3ecd36;
+  color: #652d0a;
+}
+
+body.theme-forest .dropdown-item {
+  background-color: #3ecd36;
+  color: #652d0a;
+}
+
+
+body.theme-forest .navbar-brand {
+  background-color: #3ecd36;
+  color: #652d0a;
+}
+
+body.theme-forest .dropdown-item:hover {
+  background-color: #652d0a;
+  color: #3ecd36;
+  }

@@ -1,0 +1,34 @@
+  body.theme-autumn .navbar {
+    background-color: #f58637;  /* Dark background */
+    color: #012d3c;  /* Light text */
+  }
+  
+  body.theme-autumn .navbar .nav-link {
+    color: #012d3c;
+  }
+  
+  body.theme-autumn .footer {
+    background-color: #f58637;
+    color: #012d3c;
+  }
+  
+  body.theme-autumn .dropdown-menu {
+    background-color: #f58637;
+    color: #012d3c;
+  }
+  
+body.theme-autumn .dropdown-item {
+    background-color: #f58637;
+    color: #012d3c;
+}
+  
+  
+body.theme-autumn .navbar-brand {
+    background-color: #f58637;
+    color: #012d3c;
+}
+
+body.theme-autumn .dropdown-item:hover {
+    background-color: #012d3c;
+    color: #f58637;
+    }
