@@ -1,0 +1,34 @@
+body.theme-midnight .navbar {
+  background-color: #07092f;  /* Dark background */
+  color: #dbdbdb;  /* Light text */
+}
+
+body.theme-midnight .navbar .nav-link {
+  color: #dbdbdb;
+}
+
+body.theme-midnight .footer {
+  background-color: #07092f;
+  color: #dbdbdb;
+}
+
+body.theme-midnight .dropdown-menu {
+  background-color: #07092f;
+  color: #dbdbdb;
+}
+
+body.theme-midnight .dropdown-item {
+  background-color: #07092f;
+  color: #dbdbdb;
+}
+
+
+body.theme-midnight .navbar-brand {
+  background-color: #07092f;
+  color: #dbdbdb;
+}
+
+body.theme-midnight .dropdown-item:hover {
+  background-color: #dbdbdb;
+  color: #07092f;
+  }

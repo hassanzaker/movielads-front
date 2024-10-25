@@ -35,7 +35,7 @@ const ProfileDropdown = () => {
                 </div>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu align="end" className="bg-dark text-white" style={{ minWidth: '200px' }}>
+            <Dropdown.Menu align="end" className="dropdown-menu" style={{ minWidth: '200px' }}>
                 {/* Show user's name just below avatar */}
                 {user ? (
                     <div>
@@ -52,16 +52,17 @@ const ProfileDropdown = () => {
                 <Dropdown.Divider />
                 {user ? (
                     <>
-                        <Dropdown.Item href="/profile" className="text-white bg-dark">Profile</Dropdown.Item>
-                        <Dropdown.Item href="/dashboard" className="text-white bg-dark">Dashboard</Dropdown.Item>
-                        <Dropdown.Item href="/watchlist" className="text-white bg-dark">Watchlist</Dropdown.Item>
-                        <Dropdown.Item href="/seenlist" className="text-white bg-dark">Seen Movies</Dropdown.Item>
-                        <Dropdown.Item onClick={handleLogout} className="text-white bg-dark">Log out</Dropdown.Item>
+                        <Dropdown.Item href="/profile" className="dropdown-item">Profile</Dropdown.Item>
+                        <Dropdown.Item href="/dashboard" className="dropdown-item">Dashboard</Dropdown.Item>
+                        <Dropdown.Item href="/watchlist" className="dropdown-item">Watchlist</Dropdown.Item>
+                        <Dropdown.Item href="/seenlist" className="dropdown-item">Seen Movies</Dropdown.Item>
+                        <Dropdown.Item href="/settings" className="dropdown-item">Setting</Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout} className="dropdown-item">Log out</Dropdown.Item>
                     </>
                 ) : (
                     <>
-                        <Dropdown.Item href="/signin" className="text-white bg-dark">Sign in</Dropdown.Item>
-                        <Dropdown.Item href="/preferences" className="text-white bg-dark">Preferences</Dropdown.Item>
+                        <Dropdown.Item href="/signin" className="dropdown-item">Sign in</Dropdown.Item>
+                        <Dropdown.Item href="/settings" className="dropdown-item">Setting</Dropdown.Item>
                     </>
                 )}
             </Dropdown.Menu>

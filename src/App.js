@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Signup from './Signup';
 import Signin from './Signin';
@@ -19,9 +19,11 @@ import Watchlist from './components/pages/Watchlist';
 import Seenlist from './components/pages/Seenlist';
 import Profile from './components/pages/Profile';
 import LandingPage from './components/pages/LandingPage';
+import Settings from './components/pages/Setting';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useAuth } from './components/AuthContext'; 
+import { useTheme, ThemeProvider } from './components/ThemeContext';
 
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 axios.defaults.baseURL = 'https://api.movielads.net/';
@@ -51,24 +53,34 @@ const ProtectedRoute = ({ children }) => {
 
 
 const App = () => {
+  const { theme } = useTheme();
+
 
   useEffect(() => {
-    // Define the name of web app
+    // Set the document title
     document.title = "MovieLads";
 
-
-    // Load font from google fonts
+    // Remove any previous theme class from the body
+    document.body.classList.remove('theme-light', 'theme-dark', 'theme-solarized', 'theme-autumn', 'theme-forest', 'theme-midnight', 'theme-ocean', 'theme-pastel', 'theme-sunset', 'theme-vintage', 'theme-lavender');
+  
+    // Add the new theme class based on the selected theme
+    document.body.classList.add(`theme-${theme}`);
+  
+    // Save the theme to localStorage for persistence
+    localStorage.setItem('theme', theme);
+  
+    // Load Google Fonts if needed (optional)
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
-  }, []);
+  
+  }, [theme]);
 
 
     return (
         <AuthProvider>
             <DndProvider backend={HTML5Backend}>
-
                 <Router>
                     <NavigationBar/>
                     <div className="content">
@@ -82,6 +94,7 @@ const App = () => {
                                 <Route path="/movies/:movieId" element={<MovieView />} />
                                 <Route path="/movies" element={<MovieList />} />
                                 <Route path="/about" element={<About />} />
+                                <Route path="/settings" element={<Settings />} />
                                 <Route path="/watchlist" element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
                                 <Route path="/seenlist" element={<ProtectedRoute><Seenlist /></ProtectedRoute>} />
                                 <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
