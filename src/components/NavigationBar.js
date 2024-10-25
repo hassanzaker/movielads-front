@@ -24,6 +24,7 @@ const NavigationBar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/movies">Movies</Nav.Link>
+                        <Nav.Link href="/trivia">Trivia</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
                     </Nav>
                     <Nav className="d-flex align-items-center w-100 flex-column flex-lg-row"> 
