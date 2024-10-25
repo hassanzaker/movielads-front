@@ -25,8 +25,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useAuth } from './components/AuthContext'; 
 import { useTheme, ThemeProvider } from './components/ThemeContext';
 
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/';
-axios.defaults.baseURL = 'https://api.movielads.net/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+// axios.defaults.baseURL = 'https://api.movielads.net/';
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true
@@ -89,7 +89,6 @@ const App = () => {
                                 <Route path="/" element={<LandingPage />} />
                                 <Route path="/signup" element={<Signup />} />
                                 <Route path="/signin" element={<Signin />} />
-                                <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />  {/* Home route */}
                                 <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                                 <Route path="/movies/:movieId" element={<MovieView />} />
                                 <Route path="/movies" element={<MovieList />} />

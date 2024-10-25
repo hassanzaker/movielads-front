@@ -30,7 +30,7 @@ const Signin = () => {
             localStorage.setItem('accessToken', access);
             localStorage.setItem('refreshToken', refresh);
             login(user);
-            navigate('/home');
+            navigate('/dashboard');
         } catch (error) {
             console.error(error);
             alert("Invalid login");
@@ -40,8 +40,7 @@ const Signin = () => {
 
     useEffect(() => {
         if (user){
-            alert("log out first!");
-            navigate('/home');
+            navigate('/dashboard');
         }
     }, [user, navigate]);
     
