@@ -24,6 +24,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useAuth } from './components/AuthContext'; 
 import { useTheme, ThemeProvider } from './components/ThemeContext';
+import ChangePassword from './components/pages/ChangePassword';
 
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 axios.defaults.baseURL = 'https://api.movielads.net/';
@@ -147,6 +148,7 @@ const App = () => {
                                 <Route path="/watchlist" element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
                                 <Route path="/seenlist" element={<ProtectedRoute><Seenlist /></ProtectedRoute>} />
                                 <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                                <Route path="/change-password" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
                                 {/* Catch-all route for undefined URLs */}
                                 <Route path="*" element={<NotFound />} />
                             </Routes>

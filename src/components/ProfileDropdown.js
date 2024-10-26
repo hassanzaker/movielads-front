@@ -56,11 +56,13 @@ const ProfileDropdown = () => {
                         <Dropdown.Item href="/dashboard" className="dropdown-item">Dashboard</Dropdown.Item>
                         <Dropdown.Item href="/watchlist" className="dropdown-item">Watchlist</Dropdown.Item>
                         <Dropdown.Item href="/seenlist" className="dropdown-item">Seen Movies</Dropdown.Item>
+                        <Dropdown.Item href="/change-password" className="dropdown-item">Change Password</Dropdown.Item>
                         <Dropdown.Item href="/settings" className="dropdown-item">Setting</Dropdown.Item>
                         <Dropdown.Item onClick={handleLogout} className="dropdown-item">Log out</Dropdown.Item>
                     </>
                 ) : (
                     <>
+                        <Dropdown.Item href="/signup" className="dropdown-item">Sign up</Dropdown.Item>
                         <Dropdown.Item href="/signin" className="dropdown-item">Sign in</Dropdown.Item>
                         <Dropdown.Item href="/settings" className="dropdown-item">Setting</Dropdown.Item>
                     </>
