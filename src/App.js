@@ -19,6 +19,7 @@ import Watchlist from './components/pages/Watchlist';
 import Seenlist from './components/pages/Seenlist';
 import Profile from './components/pages/Profile';
 import LandingPage from './components/pages/LandingPage';
+import Classifier from './components/pages/Classifier';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useAuth } from './components/AuthContext'; 
@@ -64,37 +65,43 @@ const App = () => {
     document.head.appendChild(link);
   }, []);
 
+   // Check the current path
+   const path = window.location.pathname;
 
-    return (
-        <AuthProvider>
-            <DndProvider backend={HTML5Backend}>
+  if (path === '/classifier'){
+    console.log("WTF!");
+    return (<Classifier />);
+  }
+  return (
+      <AuthProvider>
+          <DndProvider backend={HTML5Backend}>
 
-                <Router>
-                    <NavigationBar/>
-                    <div className="content">
-                        <Container>
-                            <Routes>
-                                <Route path="/" element={<LandingPage />} />
-                                <Route path="/signup" element={<Signup />} />
-                                <Route path="/signin" element={<Signin />} />
-                                <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />  {/* Home route */}
-                                <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                                <Route path="/movies/:movieId" element={<MovieView />} />
-                                <Route path="/movies" element={<MovieList />} />
-                                <Route path="/about" element={<About />} />
-                                <Route path="/watchlist" element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
-                                <Route path="/seenlist" element={<ProtectedRoute><Seenlist /></ProtectedRoute>} />
-                                <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-                                {/* Catch-all route for undefined URLs */}
-                                <Route path="*" element={<NotFound />} />
-                            </Routes>
-                        </Container>
-                    </div>
-                    <Footer />
-                </Router>
-            </DndProvider>
-        </AuthProvider>
-    );
+              <Router>
+                  <NavigationBar/>
+                  <div className="content">
+                      <Container>
+                          <Routes>
+                              <Route path="/" element={<LandingPage />} />
+                              <Route path="/signup" element={<Signup />} />
+                              <Route path="/signin" element={<Signin />} />
+                              <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />  {/* Home route */}
+                              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                              <Route path="/movies/:movieId" element={<MovieView />} />
+                              <Route path="/movies" element={<MovieList />} />
+                              <Route path="/about" element={<About />} />
+                              <Route path="/watchlist" element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
+                              <Route path="/seenlist" element={<ProtectedRoute><Seenlist /></ProtectedRoute>} />
+                              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                              {/* Catch-all route for undefined URLs */}
+                              <Route path="*" element={<NotFound />} />
+                          </Routes>
+                      </Container>
+                  </div>
+                  <Footer />
+              </Router>
+          </DndProvider>
+      </AuthProvider>
+  );
 };
 
 export default App;

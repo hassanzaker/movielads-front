@@ -25,6 +25,7 @@ const NavigationBar = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/movies">Movies</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
+                        <Nav.Link href="/classifier">Classifier</Nav.Link>
                     </Nav>
                     <Nav className="d-flex align-items-center w-100 flex-column flex-lg-row"> 
                         <div className="w-100 mb-2 mb-lg-0"> 
