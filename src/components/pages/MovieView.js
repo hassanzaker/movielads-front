@@ -5,10 +5,13 @@ import axios from 'axios';
 import CircularProgressBar from '../CircularProgressBar';
 import { addToWatchList } from '../../utils/watchlistUtils';
 import { addToSeenList } from '../../utils/seenListUtils';
+import { useAuth } from '../AuthContext';
 
 import { FaCalendarAlt, FaClock, FaFilm, FaMoneyBill, FaChartLine, FaCheck, FaPlus } from 'react-icons/fa';
 
 const MovieView = () => {
+    const { user } = useAuth();
+
     const params = useParams();
     const [movie, setMovie] = useState(null);
     const [isInWatchlist, setIsInWatchlist] = useState(false);
@@ -139,7 +142,12 @@ const MovieView = () => {
                         </ListGroup>
                     </Card>
                     <Button
-                        onClick={() => setShowWatchlistModal(true)}
+                        onClick={() => { 
+                            if (user) 
+                                setShowWatchlistModal(true);
+                            else
+                                alert("Login First!");
+                            }}
                         variant={isInWatchlist ? "success" : "primary"}
                         disabled={isInWatchlist}
                         className="mt-3"
@@ -157,7 +165,12 @@ const MovieView = () => {
                         )}
                     </Button>
                     <Button
-                        onClick={() => setShowSeenModal(true)}
+                        onClick={() => { 
+                            if (user) 
+                                setShowSeenModal(true);
+                            else
+                                alert("Login First!");
+                            }}
                         variant={isSeen ? "success" : "primary"}
                         disabled={isSeen}
                         className="mt-3"

@@ -1,0 +1,34 @@
+body.theme-light .navbar {
+    background-color: #bbbbbb;  /* Dark background */
+    color: #000000;  /* Light text */
+  }
+  
+  body.theme-light .navbar .nav-link {
+    color: #000000;
+  }
+  
+  body.theme-light .footer {
+    background-color: #bbbbbb;
+    color: #000000;
+  }
+  
+  body.theme-light .dropdown-menu {
+    background-color: #bbbbbb;
+    color: #000000;
+  }
+  
+body.theme-light .dropdown-item {
+    background-color: #bbbbbb;
+    color: #000000;
+}
+  
+  
+body.theme-light .navbar-brand {
+    background-color: #bbbbbb;
+    color: #000000;
+}
+
+body.theme-light .dropdown-item:hover {
+    background-color: #000000;
+    color: #bbbbbb;
+    }

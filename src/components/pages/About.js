@@ -110,10 +110,11 @@ const About = () => {
                                             Hunter Zaker
                                         </a>
                                     </Card.Text>
-                                    <Button
-                                        variant="primary"
-                                        href="https://movie-lads-statics.s3.us-east-2.amazonaws.com/resume/Hunter_resume-2.pdf"
-                                        target="_blank"
+
+                                    <Button 
+                                        variant="primary" 
+                                        href="https://movie-lads-statics.s3.us-east-2.amazonaws.com/resume/Hunter_resume.pdf" 
+                                        target="_blank" 
                                         rel="noopener noreferrer"
                                     >
                                         View My Resume

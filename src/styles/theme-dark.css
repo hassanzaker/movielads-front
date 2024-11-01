@@ -1,0 +1,33 @@
+body.theme-dark .navbar {
+  background-color: #000000;  /* Dark background */
+  color: #ffffff;  /* Light text */
+}
+
+body.theme-dark .navbar .nav-link {
+  color: #ffffff;
+}
+
+body.theme-dark .footer {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.theme-dark .dropdown-menu {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.theme-dark .dropdown-item {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+body.theme-dark .dropdown-item:hover {
+background-color: #ffffff;
+color: #000000;
+}
+
+body.theme-dark .navbar-brand {
+    background-color: #000000;
+    color: #ffffff;
+  }

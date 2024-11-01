@@ -1,0 +1,33 @@
+body.theme-sunset .navbar {
+    background-color: #efca59;  /* Dark background */
+    color: #002332;  /* Light text */
+  }
+  
+  body.theme-sunset .navbar .nav-link {
+    color: #002332;
+  }
+  
+  body.theme-sunset .footer {
+    background-color: #efca59;
+    color: #002332;
+  }
+  
+  body.theme-sunset .dropdown-menu {
+    background-color: #efca59;
+    color: #002332;
+  }
+  
+  body.theme-sunset .dropdown-item {
+      background-color: #efca59;
+      color: #002332;
+    }
+  
+  body.theme-sunset .dropdown-item:hover {
+  background-color: #002332;
+  color: #efca59;
+  }
+  
+  body.theme-sunset .navbar-brand {
+      background-color: #efca59;
+      color: #002332;
+    }
