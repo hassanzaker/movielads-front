@@ -202,3 +202,32 @@
     background-color: #000000;
     color: #fff;
 }
+
+  .plus-icon {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+  }
+  
+  .plus-icon::before,
+  .plus-icon::after {
+    content: '';
+    position: absolute;
+    background-color: white;
+  }
+  
+  .plus-icon::before {
+    width: 2px;
+    height: 10px;
+    top: 0;
+    left: 4px;
+  }
+  
+  .plus-icon::after {
+    width: 10px;
+    height: 2px;
+    top: 4px;
+    left: 0;
+  }
