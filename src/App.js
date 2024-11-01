@@ -129,14 +129,15 @@ const App = () => {
   
   }, [theme]);
 
-   // Check the current path
-   const path = window.location.pathname;
+  
 
-  if (path === '/classifier'){
-    console.log("WTF!");
-    return (<Classifier />);
-  }
   return (
+    <>
+    <Router>
+      <Routes>
+        <Route path="/classifier" element={<Classifier />} />
+        </Routes>
+    </Router>
       <AuthProvider>
           <DndProvider backend={HTML5Backend}>
 
@@ -166,6 +167,7 @@ const App = () => {
               </Router>
           </DndProvider>
       </AuthProvider>
+      </>
   );
 
   
