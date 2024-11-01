@@ -107,6 +107,11 @@ const ProtectedRoute = ({ children }) => {
 const AppContent = () => {
   const location = useLocation();
 
+  useEffect(() => {
+    console.log(location, location.pathname);
+  }, []);
+
+  
   if (location.pathname === '/classifier') {
     // Isolated route for Classifier
     return <Classifier />;
