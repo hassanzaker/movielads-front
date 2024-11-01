@@ -111,8 +111,8 @@ const AppContent = () => {
     console.log(location, location.pathname);
   }, []);
 
-  
-  if (location.pathname === '/classifier') {
+
+  if (location.pathname === '/classifier' || location.pathname === '/classifier/') {
     // Isolated route for Classifier
     return <Classifier />;
   }
