@@ -27,8 +27,8 @@ import { useAuth } from './components/AuthContext';
 import { useTheme, ThemeProvider } from './components/ThemeContext';
 import ChangePassword from './components/pages/ChangePassword';
 
-axios.defaults.baseURL = 'http://127.0.0.1:5000/';
-// axios.defaults.baseURL = 'https://api.movielads.net/';
+// axios.defaults.baseURL = 'http://127.0.0.1:5000/';
+axios.defaults.baseURL = 'https://api.movielads.net/';
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true
