@@ -89,9 +89,9 @@ const About = () => {
                             </Card.Title>
                             <Row className="align-items-center">
                                 <Col md={4}>
-                                    <img 
-                                        src="https://movie-lads-statics.s3.us-east-2.amazonaws.com/resume/Hunter_pic.jpg" 
-                                        alt="My profile" 
+                                    <img
+                                        src="https://movie-lads-statics.s3.us-east-2.amazonaws.com/resume/Hunter_pic.jpg"
+                                        alt="My profile"
                                         className="img-fluid rounded-circle"
                                     />
                                 </Col>
@@ -110,6 +110,7 @@ const About = () => {
                                             Hunter Zaker
                                         </a>
                                     </Card.Text>
+
                                     <Button 
                                         variant="primary" 
                                         href="https://movie-lads-statics.s3.us-east-2.amazonaws.com/resume/Hunter_resume.pdf" 
