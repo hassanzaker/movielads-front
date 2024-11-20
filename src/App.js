@@ -19,6 +19,7 @@ import Watchlist from './components/pages/Watchlist';
 import Seenlist from './components/pages/Seenlist';
 import Profile from './components/pages/Profile';
 import LandingPage from './components/pages/LandingPage';
+import Presentaions from './components/pages/Presentaions';
 import Classifier from './components/pages/Classifier';
 import Settings from './components/pages/Setting';
 import { DndProvider } from 'react-dnd';
@@ -26,6 +27,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useAuth } from './components/AuthContext';
 import { useTheme, ThemeProvider } from './components/ThemeContext';
 import ChangePassword from './components/pages/ChangePassword';
+import Presentations from './components/pages/Presentaions';
 
 // axios.defaults.baseURL = 'http://127.0.0.1:5000/';
 axios.defaults.baseURL = 'https://api.movielads.net/';
@@ -136,6 +138,7 @@ const AppContent = () => {
                 <Route path="/watchlist" element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
                 <Route path="/seenlist" element={<ProtectedRoute><Seenlist /></ProtectedRoute>} />
                 <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                <Route path="/presentaions" element={<Presentations />} />
                 {/* Catch-all route for undefined URLs */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
