@@ -8,7 +8,7 @@ const Presentations = () => {
                 <Col>
                     <h1 className="display-4 mb-4">Presentation</h1>
                     <p className="lead text-muted">
-                        This video showcases a web application tool built with Angular as the front-end. The application enables users to explore and analyze bank transactional data through an interactive graph-based interface. By visualizing accounts and their connections as nodes and edges, it helps users identify patterns, trace transaction paths, and detect potential cases of money laundering or fraud. 
+                        This video showcases a web application tool built with Angular for the front-end and ASP.NET for the back-end. The application enables users to explore and analyze bank transactional data through an interactive graph-based interface. By visualizing accounts and their connections as nodes and edges, it helps users identify patterns, trace transaction paths, and detect potential cases of money laundering or fraud. 
                     </p>
                 </Col>
             </Row>
